@@ -1,14 +1,30 @@
 // main.js
-import {getLista} from "./lista.js";
+import {adicionarNaLista, getLista, limparLista} from "./lista.js";
 
 //passo 1 - Ache os elementos importantes (pelo inspecionar do google)
 const pEntrada = document.querySelector('#entrada');
-const olSaida = document.querySelector('#saida');
+const olSaida = document.querySelector('#itens');
 const btnAdicionar = document.querySelector('#adicionar');
 const btnLimpar = document.querySelector('#limpar');
 
-olSaida.innerHTML = "";
+btnLimpar.addEventListener('click',limparElementosDaLista);
+btnAdicionar.addEventListener('click',criaElementoNaLista);
+
 atualizarItensDeLista();
+
+function criaElementoNaLista()
+{
+    const texto = pEntrada.textContent;
+    adicionarNaLista(texto);
+    atualizarItensDeLista();
+    pEntrada.textContent="";
+    pEntrada.focus();
+}
+
+function limparElementosDaLista(){
+    limparLista();
+    atualizarItensDeLista();
+}
 
 function atualizarItensDeLista ()
 {
